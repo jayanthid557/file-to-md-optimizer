@@ -1,0 +1,45 @@
+Phase 1: Environment Setup
+•	Create a project folder on your computer.
+•	Initialize a Python virtual environment inside the folder.
+•	Activate the virtual environment.
+•	Install core libraries (python-magic, pymupdf, pdfplumber, python-docx, python-pptx, markdownify, pytesseract).
+•	Install Tesseract OCR directly onto your operating system engine.
+Phase 2: Code Development
+•	Create security.py to check file magic bytes and inspect zip compression ratios.
+•	Create parsers/ directory to house standalone text extraction logic.
+•	Write parse_pdf.py to stream files page-by-page using pymupdf and isolate tables using pdfplumber.
+•	Write parse_docx.py to extract paragraphs, lists, and headings cleanly.
+•	Write parse_ocr.py to read text from raw images via pytesseract.
+•	Create cleaner.py using Regular Expressions (re) to strip out headers, footers, numbers, and excess whitespaces.
+•	Create assembler.py to set up a memory buffer that flushes text blocks onto the disk in batches.
+Phase 3: Integration & Testing
+•	Create main.py to bind the gateway, parsers, cleaner, and assembler into one sequential pipeline.
+•	Run a small text PDF test to check structural output accuracy.
+•	Run a heavy table PDF test to confirm grid layout parsing.
+•	Run a large image test to test your OCR threshold limits.
+
+
+
+
+
+
+
+SYSTEM REQUIREMENTS & DEPENDENCIES
+Save the following block as your project's requirements.txt file:
+python-magic==0.4.27
+pymupdf==1.24.11
+pdfplumber==0.11.4
+python-docx==1.1.2
+python-pptx==0.6.23
+markdownify==0.13.1
+pytesseract==0.3.13
+External Operating System Dependencies:
+•	Tesseract OCR Engine must be installed natively on your host machine:
+o	Linux: sudo apt install tesseract-ocr
+o	macOS: brew install tesseract
+o	Windows: Download the official installer and manually append its directory
+path to your system's Environment Variables (PATH).
+•	libmagic must be installed on your machine for the python-magic check:
+o	macOS: brew install libmagic
+o	Windows: pip install python-magic-bin (as a fallback utility helper)
+	
